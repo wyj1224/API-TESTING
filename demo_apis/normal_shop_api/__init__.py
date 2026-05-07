@@ -1,0 +1,1 @@
+"""Correct demo shop API."""

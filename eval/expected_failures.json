@@ -1,0 +1,39 @@
+{
+  "buggy_shop_api": [
+    {
+      "case_id": "login_missing_password",
+      "endpoint": "POST /login",
+      "expected_status": 422,
+      "actual_buggy_status": 500,
+      "description": "Missing password returns an internal server error instead of validation failure."
+    },
+    {
+      "case_id": "get_missing_item",
+      "endpoint": "GET /items/{item_id}",
+      "expected_status": 404,
+      "actual_buggy_status": 200,
+      "description": "Missing items are returned as placeholder objects instead of not found errors."
+    },
+    {
+      "case_id": "duplicate_registration",
+      "endpoint": "POST /register",
+      "expected_status": 409,
+      "actual_buggy_status": 201,
+      "description": "Duplicate registration overwrites the existing user instead of returning a conflict."
+    },
+    {
+      "case_id": "create_item_negative_price",
+      "endpoint": "POST /items",
+      "expected_status": 422,
+      "actual_buggy_status": 201,
+      "description": "Negative item prices are accepted."
+    },
+    {
+      "case_id": "users_me_missing_token",
+      "endpoint": "GET /users/me",
+      "expected_status": 401,
+      "actual_buggy_status": 500,
+      "description": "Missing bearer token returns an internal server error instead of unauthorized."
+    }
+  ]
+}
